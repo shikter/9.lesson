@@ -2,7 +2,13 @@
 
 require_once("../../../config.php");
 	
-
+	//start server session to store data
+	//in every file you want to access session
+	//you should require functions
+	
+	session_start();
+	
+	
 	
 	function login($user, $pass){
 		
@@ -24,6 +30,17 @@ require_once("../../../config.php");
 		//get the data
 		if($stmt->fetch()){
 			echo " User with id ".$id." - Logged in!";	
+			
+			
+		//----------------------------------//	
+			//create session variables
+			//redirect user
+			$_SESSION["user_id"] = $id;
+			$_SESSION["username"] = $user;
+			
+			header("Location: restrict.php");
+		//----------------------------------//	
+			
 		}else{
 			// username was wrong or password was wrong or both.
 			echo $stmt->error;

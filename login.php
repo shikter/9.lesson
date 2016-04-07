@@ -3,9 +3,18 @@
 	require_once("functions.php");
 	
 	
+	
+	if(isset($_SESSION["user_id"])){
+		//redirect user to restricted page
+		header("Location: restrict.php");
+		
+	}
+	
+	
 //---------------------------------------------------------------------------------//
 	
 	//login=smth is in the URL
+	//login button clocked
 	if(isset($_POST["login"])){
 		
 		//login
