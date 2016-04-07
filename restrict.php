@@ -27,7 +27,8 @@ require_once("functions.php");
 
 
 ?>
+<h2> Welcome! <?=$_SESSION["username"];?> (ID: <?=$_SESSION["user_id"];?>) </h2>
 
-Restricted
+
 <br>
 <a href="?logout=1" >Log Out</a>
