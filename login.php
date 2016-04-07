@@ -1,21 +1,25 @@
 <?php
+
+	require_once("functions.php");
 	
 	//login=smth is in the URL
-	if(isset($_GET["login"])){
+	if(isset($_POST["login"])){
 		
 		//login
 		echo "logging in...";
 		
 	//signup button clocked
-	}else if(isset($_GET["signup"])){
+	}else if(isset($_POST["signup"])){
 		
 		//signup
 		echo "signing up...";
 		
 		//the fields are not empty
-		if( !empty($_GET["username"]) && !empty($_GET["password"]) ){
+		if( !empty($_POST["username"]) && !empty($_POST["password"]) ){
 			
 			//save to db
+			
+			signup($_POST["username"], $_POST["password"]);
 			
 		}else{
 			
@@ -32,7 +36,7 @@
 
 
 <h1>Log in</h1>
-<form>
+<form method="POST">
 
 	<input type="text" placeholder="username" name="username">
 	<input type="password" placeholder="password" name="password">
@@ -46,7 +50,8 @@
 
 
 <h1>Sign up</h1>
-<form>
+<form method="POST">
+<!-- <form>-->
 
 	<input type="text" placeholder="username" name="username">
 	<input type="password" placeholder="password" name="password">

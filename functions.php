@@ -3,11 +3,15 @@
 	require_once("../../../config.php");
 	
 
+	
 	function signup($user, $pass){
+		
+		//hash the password
+		$pass = hash("sha512", $pass);
 		
 		
 		//GLOBALS - access outside variable in function
-		$mysql = new mysqli("localhost", $_GLOBALS["db_username"], $_GLOBALS["$db_password"], "webpr2016_shikter");
+		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_shikter");
 		
 		$stmt = $mysql->prepare("INSERT INTO users(username, password) VALUES(?, ?)");
 		
