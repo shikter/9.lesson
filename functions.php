@@ -1,8 +1,40 @@
 <?php
 
-	require_once("../../../config.php");
+require_once("../../../config.php");
 	
 
+	
+	function login($user, $pass){
+		
+		//hash the password
+		$pass = hash("sha512", $pass);
+		
+		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_shikter");
+		
+		$stmt = $mysql->prepare("SELECT id from users WHERE username=? and password=?");
+		
+		echo $mysql->error;
+		
+		$stmt->bind_param("ss", $user, $pass);
+		
+		$stmt->bind_result($id);
+		
+		$stmt->execute();
+		
+		//get the data
+		if($stmt->fetch()){
+			echo " User with id ".$id." - Logged in!";	
+		}else{
+			// username was wrong or password was wrong or both.
+			echo $stmt->error;
+			echo "wrong credentials";
+		}
+		
+	}
+	
+	
+	
+	
 	
 	function signup($user, $pass){
 		
